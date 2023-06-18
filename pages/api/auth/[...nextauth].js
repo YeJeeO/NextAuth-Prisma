@@ -43,11 +43,11 @@ export const authOptions = {
       async authorize(credentials, req) {
         console.log('credentials', credentials);
         // Return null if user data could not be retrieved
-
-        if ('1' === credentials.username && '1' === credentials.password)
-          return { id: '1', name: 'J Smith', email: 'jsmith@example.com' };
-        return null;
-      }
+        if (!user || !(await compare(password, user.password))) {
+          throw new Error("Invalid username or password");
+        }
+        return user;
+           }
     })
   ],
 };
