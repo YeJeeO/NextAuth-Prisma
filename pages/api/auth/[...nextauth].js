@@ -8,7 +8,7 @@ import { PrismaClient } from '@prisma/client';
 import GitHubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
-import EmailProvider from "next-auth/providers/email";
+import MailRuProvider from "next-auth/providers/mailru";
 
 const prisma = new PrismaClient();
 
@@ -24,9 +24,9 @@ export const authOptions = {
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
     }),
-        EmailProvider({
-        server: process.env.EMAIL_SERVER,
-        from: process.env.EMAIL_FROM
+    MailRuProvider({
+      clientId: process.env.MAILRU_CLIENT_ID,
+      clientSecret: process.env.MAILRU_CLIENT_SECRET
       }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
